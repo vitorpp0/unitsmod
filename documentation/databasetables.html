@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+  </head>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+    body{
+      color: white;
+      text-align: center;
+      font-family: 'Roboto', sans-serif;
+      font-weight: medium;
+
+      background-color: #000000;
+      transition: background-image 0.2s ease-in;
+
+      min-height: 800px;
+
+      animation-name: back;
+      animation-duration: 3s;
+      animation-timing-function: linear;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+
+      overflow-x: hidden;
+    }
+
+    @keyframes  back{
+      0%{background-image: url("./images/white.svg");}
+      100%{background-image: url("./images/blue.svg");}
+    }
+
+    h1{
+      margin:0 auto;
+      margin-top: 30px;
+      background-color: #fff;
+      color: #000;
+      width: 400px;
+    }
+
+    select, table{
+      margin: 0 auto;
+    }
+
+    select{
+      text-transform: capitalize;
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+
+      margin-top: 40px;
+      background-color: black;
+      height: 50px;
+
+      border: 2px solid white;
+      border-radius: 5%;
+
+      cursor: pointer;
+    }
+
+    section{
+      display: flex;
+      justify-content: space-around;
+      
+      align-items: center;
+      margin: 0 auto;
+      margin-top: 40px;
+      width: 400px;
+    }
+
+    section div{
+      display:flex;
+      flex-direction: column;
+      margin:0;
+      position: initial !important;
+    }
+
+    section select{
+      margin: 0;
+    }
+
+    input{
+      background-color: black;
+
+      border: 2px solid #e3e3e3;
+      border-radius: 10%;
+
+      text-transform: capitalize;
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+      text-align: center;
+
+      margin: 0 auto;
+      width: 140px;
+      height: 30px;
+    }
+
+    label{
+      margin:0;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    div{
+      width:600px;
+      margin:0;
+      margin-top: 40px;
+      position: absolute;
+      left: -100px;
+      font-size: 20px;
+    }
+
+    table{
+      margin: 0 auto;
+      display: table;
+      background-color: #000000;
+    }
+
+    table, th{
+      border: 2px solid #e3e3e3;
+      border-collapse: collapse;
+
+      min-width: 100px;
+      padding: 5px;
+      
+      text-align: center;
+      font-weight: medium;
+      font-size: 20px;
+    }
+
+    .Active{
+      display: block;;
+      animation-name: getTable;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      animation-direction: linear;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes  getTable{
+      from{
+        left: -100px;
+        opacity: 0;
+      }
+
+      to{
+        left: 50%;
+        margin-left:-300px;
+        opacity: 1;
+      }
+    }
+
+    .begin{
+      display: none;
+    }
+
+    .Enactive{
+      display: block;
+      animation-name: eraseTable;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      animation-direction: linear;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes  eraseTable{
+      from{
+        left: 50%;
+        margin-left:-300px;
+        opacity: 1;
+      }
+
+      to{
+        left: 80%;
+        margin-left:0px;
+        opacity: 0;
+      }
+    }
+
+  </style>
+
+  <body>
+    <h1>Units.py</h1>
+
+    <section>
+
+      <div style="width:150px;">
+        <label for="numDecimals">Decimal Places</label>
+        <input id='numDecimals' type="text" maxlength='3' value='2'>
+      </div>
+
+      <div style="width:150px;">
+        <label for="numFromSelect">Number Format</label>
+        <select id="numFormSelect">
+          <option value="Scientific">Scientific</option>
+          <option value="Fixed">Fixed</option>
+        </select>
+      </div>
+
+    </section>
+		<select id='unitSelector'>
+			<option value='mass'>mass</option>
+			<option value='distance'>distance</option>
+			<option value='temporal'>temporal</option>
+			<option value='force'>force</option>
+			<option value='energy'>energy</option>
+			<option value='potency'>potency</option>
+			<option value='pressure'>pressure</option>
+			<option value='count'>count</option>
+			<option value='temperatureInterval'>temperatureInterval</option>
+		</select>
+		<div id='massdiv' class='begin'>
+			<table border="0" class="dataframe" id="mass">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>kg</td>
+      <td>1000.00000</td>
+    </tr>
+    <tr>
+      <td>hg</td>
+      <td>100.00000</td>
+    </tr>
+    <tr>
+      <td>dag</td>
+      <td>10.00000</td>
+    </tr>
+    <tr>
+      <td>g</td>
+      <td>1.00000</td>
+    </tr>
+    <tr>
+      <td>dg</td>
+      <td>0.10000</td>
+    </tr>
+    <tr>
+      <td>cg</td>
+      <td>0.01000</td>
+    </tr>
+    <tr>
+      <td>mg</td>
+      <td>0.00100</td>
+    </tr>
+    <tr>
+      <td>lb</td>
+      <td>453.59200</td>
+    </tr>
+    <tr>
+      <td>ton</td>
+      <td>1000000.00000</td>
+    </tr>
+    <tr>
+      <td>oz</td>
+      <td>28.34952</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		<div id='distancediv' class='begin'>
+			<table border="0" class="dataframe" id="distance">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>km</td>
+      <td>1.000000e+03</td>
+    </tr>
+    <tr>
+      <td>hm</td>
+      <td>1.000000e+02</td>
+    </tr>
+    <tr>
+      <td>dam</td>
+      <td>1.000000e+01</td>
+    </tr>
+    <tr>
+      <td>m</td>
+      <td>1.000000e+00</td>
+    </tr>
+    <tr>
+      <td>dm</td>
+      <td>1.000000e-01</td>
+    </tr>
+    <tr>
+      <td>cm</td>
+      <td>1.000000e-02</td>
+    </tr>
+    <tr>
+      <td>mm</td>
+      <td>1.000000e-03</td>
+    </tr>
+    <tr>
+      <td>um</td>
+      <td>1.000000e-06</td>
+    </tr>
+    <tr>
+      <td>nm</td>
+      <td>1.000000e-09</td>
+    </tr>
+    <tr>
+      <td>lightyear</td>
+      <td>9.461000e+15</td>
+    </tr>
+    <tr>
+      <td>astronomical</td>
+      <td>1.496000e+11</td>
+    </tr>
+    <tr>
+      <td>in</td>
+      <td>2.540000e-02</td>
+    </tr>
+    <tr>
+      <td>ft</td>
+      <td>3.048000e-01</td>
+    </tr>
+    <tr>
+      <td>yard</td>
+      <td>9.144000e-01</td>
+    </tr>
+    <tr>
+      <td>mi</td>
+      <td>1.609340e+03</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		<div id='temporaldiv' class='begin'>
+			<table border="0" class="dataframe" id="temporal">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ns</td>
+      <td>1.000000e-09</td>
+    </tr>
+    <tr>
+      <td>us</td>
+      <td>1.000000e-06</td>
+    </tr>
+    <tr>
+      <td>ms</td>
+      <td>1.000000e-03</td>
+    </tr>
+    <tr>
+      <td>s</td>
+      <td>1.000000e+00</td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>6.000000e+01</td>
+    </tr>
+    <tr>
+      <td>h</td>
+      <td>3.600000e+03</td>
+    </tr>
+    <tr>
+      <td>day</td>
+      <td>8.640000e+04</td>
+    </tr>
+    <tr>
+      <td>month</td>
+      <td>2.592000e+06</td>
+    </tr>
+    <tr>
+      <td>year</td>
+      <td>3.110400e+07</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		<div id='forcediv' class='begin'>
+			<table border="0" class="dataframe" id="force">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>n</td>
+      <td>1.00000</td>
+    </tr>
+    <tr>
+      <td>lf</td>
+      <td>4.44822</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		<div id='energydiv' class='begin'>
+			<table border="0" class="dataframe" id="energy">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>j</td>
+      <td>1.000000e+00</td>
+    </tr>
+    <tr>
+      <td>kj</td>
+      <td>1.000000e+03</td>
+    </tr>
+    <tr>
+      <td>cal</td>
+      <td>4.184000e+03</td>
+    </tr>
+    <tr>
+      <td>kcal</td>
+      <td>4.184000e+03</td>
+    </tr>
+    <tr>
+      <td>wh</td>
+      <td>3.600000e+03</td>
+    </tr>
+    <tr>
+      <td>kwh</td>
+      <td>3.600000e+06</td>
+    </tr>
+    <tr>
+      <td>eletronvolt</td>
+      <td>1.602200e-19</td>
+    </tr>
+    <tr>
+      <td>btu</td>
+      <td>1.055060e+03</td>
+    </tr>
+    <tr>
+      <td>mmbtu</td>
+      <td>1.055060e+09</td>
+    </tr>
+    <tr>
+      <td>therm</td>
+      <td>1.055060e+08</td>
+    </tr>
+    <tr>
+      <td>ftlb</td>
+      <td>1.355820e+00</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		<div id='potencydiv' class='begin'>
+			<table border="0" class="dataframe" id="potency">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>w</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <td>kw</td>
+      <td>1000.000</td>
+    </tr>
+    <tr>
+      <td>hp</td>
+      <td>745.700</td>
+    </tr>
+    <tr>
+      <td>cv</td>
+      <td>735.499</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		<div id='pressurediv' class='begin'>
+			<table border="0" class="dataframe" id="pressure">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pa</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <td>kpa</td>
+      <td>1000.000000</td>
+    </tr>
+    <tr>
+      <td>psi</td>
+      <td>6894.760000</td>
+    </tr>
+    <tr>
+      <td>torr</td>
+      <td>133.322421</td>
+    </tr>
+    <tr>
+      <td>atm</td>
+      <td>101325.039821</td>
+    </tr>
+    <tr>
+      <td>bar</td>
+      <td>1000.000000</td>
+    </tr>
+    <tr>
+      <td>mmhg-atm</td>
+      <td>133.322000</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		<div id='countdiv' class='begin'>
+			<table border="0" class="dataframe" id="count">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>thing</td>
+      <td>1.000000e+00</td>
+    </tr>
+    <tr>
+      <td>mol</td>
+      <td>6.023000e+23</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		<div id='temperatureIntervaldiv' class='begin'>
+			<table border="0" class="dataframe" id="temperatureInterval">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Unit</th>
+      <th>Conversion Factor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>dk</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <td>dc</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <td>df</td>
+      <td>0.555556</td>
+    </tr>
+    <tr>
+      <td>dr</td>
+      <td>0.555556</td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+</body>
+  <script>
+    var numFormInput = document.getElementById('numDecimals');
+    numFormInput.addEventListener('input', () => {formatTables();});
+
+    var numFormSelector = document.getElementById('numFormSelect')
+    numFormSelector.addEventListener('change', () => {formatTables();});
+
+    var selector = document.getElementById('unitSelector');
+    selector.addEventListener('change', (event) => {showTable(event);});
+    localStorage.setItem('lastActiveTable', selector.item(selector.selectedIndex).value+'div');
+
+    document.getElementById('massdiv').classList.replace('begin', 'Active');
+
+    function showTable(){
+
+      tableToHide = localStorage.getItem('lastActiveTable');
+      document.getElementById(tableToHide).classList.replace('Active', 'Enactive');
+
+      tableToShow = selector.item(selector.selectedIndex).value + 'div';
+      if(document.getElementById(tableToShow).classList.contains('begin')){
+        document.getElementById(tableToShow).classList.replace('begin', 'Active');
+      }else{
+        document.getElementById(tableToShow).classList.replace('Enactive', 'Active');
+      }
+      localStorage.setItem('lastActiveTable', tableToShow);
+    }
+
+    function formatTables(){
+      let numTables, table, index, numRow, cellContent, numForm, numDecimals;
+      
+      numDecimals = numFormInput.value;
+      if(isNumber(numDecimals)){
+
+        numTables = selector.options.length 
+        for(let j=0; j<numTables; j++){
+
+            table = document.getElementById(selector.options[j].value);
+          
+            numForm = numFormSelector.item(numFormSelector.selectedIndex).value;
+            index = table.rows[0].cells.length -1;
+            numRow = table.rows.length;
+            cellContent = ''
+
+            for(let j =1; j<numRow; j++){
+
+              cellContent = parseFloat(table.rows[j].cells[index].textContent)
+              cellContent = (numForm == 'Fixed')? cellContent.toFixed(numDecimals): cellContent.toExponential(numDecimals);
+
+              table.rows[j].cells[index].textContent = cellContent.toString();
+            }
+
+          }
+
+        }
+      }
+
+    function isNumber(toTest){
+      let compare = parseInt(toTest);
+      compare = compare.toString();
+
+      return (compare == toTest)? true : false;
+    }
+
+    formatTables()
+
+  </script>
+
+</html>
